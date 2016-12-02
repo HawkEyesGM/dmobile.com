@@ -1,0 +1,191 @@
+h1{
+	font-size: 40px;
+	font-weight: 500;
+	font-style: verdana;
+}
+
+.menu_top a{
+	font-size: 17px;
+	margin-right: 25px;
+	text-decoration: none;
+	color:blue;
+}
+
+.imgGood{
+	position: absolute;
+	margin-top:45px;
+	margin-left:130px;
+}
+
+.idGood{
+	position: absolute;
+	margin-left: 550px;
+	margin-top: 140px;
+}
+
+.preview{
+	display:block;
+	position: absolute;
+	padding:10px;	
+}
+.preview img{
+	margin-top: 8px;
+}
+
+.colorsGood{
+	margin-left:400px;
+	position: absolute;
+	padding:10px;
+}
+
+.colorsGood a{
+	display: inline-block;
+}
+.colorsGood span{
+	color:#999999;
+}
+
+.stiker{
+	position: absolute;
+	margin-left: 40px;
+}
+
+	.stiker .superPrice{
+		border:2px solid #6FCE66;
+		width: 120px;
+		height: 30px;
+		position: absolute;	
+		font-family: Arial;
+		font-size: 18px;
+		text-align: center;
+		background-color: #6FCE66;
+		z-index: 11;
+		border-radius: 10px;
+		box-sizing: border-box;		
+		color: white;
+		margin-left: 55px;
+		padding-top: 3px;
+	}
+
+	.stiker .topSales{
+		border:2px solid #ffcf0f;
+		width: 120px;
+		height: 30px;
+		position: absolute;	
+		font-family: Arial;
+		font-size: 18px;
+		text-align: center;
+		background-color: #ffcf0f;
+		z-index: 11;
+		border-radius: 10px;
+		box-sizing: border-box;		
+		color: black;
+		margin-left: 55px;
+		padding-top: 3px;
+	}
+
+	.stiker .stock{
+		border:2px solid red;
+		width: 120px;
+		height: 30px;
+		position: absolute;	
+		font-family: Arial;
+		font-size: 18px;
+		text-align: center;
+		background-color: white;
+		z-index: 11;
+		border-radius: 10px;
+		box-sizing: border-box;		
+		color:red;
+		margin-left: 55px;
+		padding-top: 3px;
+	}
+
+	.video{
+		position: absolute;
+		margin-top: 400px;
+		margin-left: 120px;
+		color:#5be592;
+	}
+	.video a{
+		color:#3c4fbc;
+	}
+
+	.demo{
+		position: absolute;
+		margin-top: 400px;
+		margin-left: 200px;
+	}
+	.demo a{
+		color:#1d8422;
+	}
+
+	.endingGood{
+		position: absolute;
+		color: red;
+		font-size: 20px;		
+		height: 30px;
+		width:140px;
+		margin-left: 430px;
+		margin-top: 85px;
+	}
+
+	.oldPrice{
+		margin-left: 440px;
+		margin-top: 115px;
+		position: absolute;
+		box-sizing: border-box;		
+		width: 100px;
+		height: 30px;		
+		padding-left:5px; 
+		text-align: center;		
+		font-size: 20px;
+		font-weight: 500;
+		font-family:  Arial, Verdana, sans-serif; font-weight: normal;
+		line-height: -10px;
+		color:grey;
+	}
+
+	.PriceContainer{
+		margin-left: 440px;
+		margin-top: 145px;
+		position: absolute;
+		border: 1px solid #FFF3B5;
+		border-radius: 5px;		
+		box-sizing: border-box;
+		max-width: 100%;
+		width: 100px;
+		height: 31px;		
+		padding-left:5px; 
+		text-align: center;
+		background-color: #FFF3B5;		
+		font-size: 21px;
+		font-weight: 500;
+		font-style: Arial;
+		line-height: -10px;
+	}
+	.reviews{
+		position: absolute;
+		margin-top:35px;
+		border: 1px solid #FFF3B5;
+		font-size: 19px;
+	}
+
+	.features{
+		position: absolute;
+		margin-top: 500px;
+		margin-left: 100px;		
+	}
+
+	.description{
+		position: absolute;
+		margin-top: 250px;
+		margin-left: 370px;
+		width: 400px;
+		line-height: 25px;
+		font-weight: 450;	
+	}
+
+	
+
+	

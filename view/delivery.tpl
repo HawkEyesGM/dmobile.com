@@ -1,0 +1,1 @@
+<img src="images/delivery.png" width=100% >

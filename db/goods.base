@@ -1,0 +1,116 @@
+<?
+include 'config/config.php';
+$dbc = mysqli_connect(DB_HOST,DB_USER,DB_PASSWORD,"HawkEyes");
+if(!$dbc){	
+	//код вывода страницы ошибки (Проводятся технические работы)		
+	die();
+}
+$brand="id < 100000000";
+$sort="`raiting` DESC";
+$filter="";
+if($_GET['filter']){
+$filter=" AND ".$_GET['filter'];
+}
+
+switch ($_POST['category']){
+	case "raiting";
+	$sort="`raiting` DESC";
+	break;
+	case "cheap";
+	$sort="`price`";
+	break;
+	case "expensive";
+	$sort="`price` DESC";
+	break;
+	case "new";
+	$sort="`id` DESC";
+	break;
+}
+	switch ($_GET["brand"]){
+		case "samsung";
+		$brand="brand='samsung'";
+		break;
+		case "apple";
+		$brand="brand='apple'";
+		break;
+		case "lenovo";
+		$brand="brand='lenovo'";
+		break;
+		case "htc";
+		$brand="brand='htc'";
+		break;
+		case "xiaomi";
+		$brand="brand='xiaomi'";
+		break;
+		case "sony";
+		$brand="brand='sony'";
+		break;
+		case "asus";
+		$brand="brand='asus'";
+		break;
+		case "meizu";
+		$brand="brand='meizu'";
+		break;
+		case "huawei";
+		$brand="brand='huawei'";
+		break;
+		case "microsoft";
+		$brand="brand='microsoft'";
+		break;
+		case "motorolla";
+		$brand="brand='motorolla'";
+		break;
+		case "headphones";
+		$brand="brand='headphones'";
+		break;
+		case "protection";
+		$brand="brand='protection'";
+		break;
+	}
+
+	$parameter=$brand.$filter;
+
+	$query="SELECT *
+		FROM `goods`
+		WHERE $parameter 
+		ORDER BY $sort;";
+
+$res=mysqli_query($dbc, $query);
+if(!$res){
+	print_r($query);
+	die();
+}
+$goods=[];
+while ($row = mysqli_fetch_assoc($res)){
+	$index = $row['id']; //индекс товара в массиве 24 , 25 , 29  [ [24]=>[id=>24, name=>samsung], [25]=>]
+	$goods[$index] = $row;
+}
+mysqli_close($dbc);
+
+?>
+
+
+
+
+
+
+<!-- // if(($_POST['category'])=='raiting'){	
+// 	$query="SELECT `id`, `demo`, `name`, `video`, `price`, `old_price`, `description`, `public`, `sticker`, `in_stock`, `raiting`, `group_goods`, `brand`
+// 			FROM `goods`
+//  			ORDER BY `raiting` DESC;";
+// 	}
+// 	if(($_POST['category'])=='cheap'){	
+// 	$query="SELECT `id`, `demo`,`name`, `video`, `price`, `old_price`, `description`, `public`, `sticker`, `in_stock`, `raiting`, `group_goods`, `brand`
+//  			FROM `goods`
+//  			ORDER BY `price`;";
+// 	}
+// 	if(($_POST['category'])=='expensive'){	
+// 	$query="SELECT `id`, `demo`,`name`, `video`, `price`, `old_price`, `description`, `public`, `sticker`, `in_stock`, `raiting`, `group_goods`, `brand`
+//  			FROM `goods`
+// 			ORDER BY `price` DESC;";
+// 	}
+// 	if(($_POST['category'])=='new'){	
+// 	$query="SELECT `id`, `demo`,`name`, `video`, `price`, `old_price`, `description`, `public`, `sticker`, `in_stock`, `raiting`, `group_goods`, `brand`
+// 			FROM `goods`
+// 			ORDER BY `id` DESC;";
+// 	} -->

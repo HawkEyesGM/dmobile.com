@@ -1,0 +1,47 @@
+*{box-sizing: border-box;}
+
+.admin{	
+	padding: 15px;
+	height: auto;
+	background-color: #d7f0f7;
+	line-height: 1.8;
+ 	font-style: arial;
+ 	font-size: 20px;
+}
+
+h1{
+	color:red;
+	text-align: center;
+	font-size: 23px;
+}
+
+.colors{
+	margin-right: 20px;
+}
+
+input{
+	margin-left: 10px;
+}
+
+
+.my_button{
+	width: 150px;
+	height: 50px;
+	float:right;		
+	font-size: 23px;
+	background-color: #95edc4;
+	font-weight: 560;	
+}
+
+
+
+.feature_input{
+	float:left;
+	text-align: center;
+	margin-left: 40px;
+}
+
+.feature_input input{
+	width:50px;
+}
+

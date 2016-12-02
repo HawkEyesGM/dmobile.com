@@ -1,0 +1,157 @@
+
+.accordion {
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0 auto;
+    font-size: 13px;
+    border: none;    
+    width: 180px;    
+    background: #fff;
+    border-color: #fff;
+}
+
+.accordion ul {
+    list-style:none;
+    margin:0;
+    padding:0;    
+}
+
+.accordion li {
+    margin:0;
+    padding:0;
+}
+
+.accordion [type=radio], .accordion [type=checkbox] {
+    display:none;
+}
+
+.accordion label {
+    display: block;
+    font-size: 13px;
+    line-height: 16px;
+    color: #1a299e;    
+    cursor: pointer;
+}
+
+.accordion [type=radio]:checked ~ label, .accordion [type=checkbox]:checked ~ label {
+ 
+}
+
+.accordion .content {
+ padding: 0px 25px;
+ overflow: hidden;
+ -webkit-transition: all .5s ease-out;
+ -moz-transition: all .5s ease-out;
+}
+
+.accordion .content2 {
+ padding: 0px 25px;
+ overflow: hidden;
+ -webkit-transition: all .5s ease-out;
+ -moz-transition: all .5s ease-out;
+}
+
+.accordion .content3 {
+ padding: 0px 25px;
+ overflow: hidden;
+ -webkit-transition: all .5s ease-out;
+ -moz-transition: all .5s ease-out;
+}
+
+.accordion .content4 {
+ padding: 0px 25px;
+ overflow: hidden;
+ -webkit-transition: all .5s ease-out;
+ -moz-transition: all .5s ease-out;
+}
+
+.accordion .content5 {
+ padding: 0px 25px;
+ overflow: hidden;
+ -webkit-transition: all .5s ease-out;
+ -moz-transition: all .5s ease-out;
+}
+
+.linc span {
+	color:#000;
+}
+
+.accordion p {
+    color:#333;
+    margin:0 0 10px;
+}
+
+.accordion h4 {
+    color:#542437;
+    padding:0;
+    margin:10px 0;
+}
+
+.vertical ul li {
+    overflow:hidden;
+    margin:0 0 1px;
+}
+.vertical ul li label {
+    padding:10px;
+}
+.vertical [type=radio]:checked ~ label, .vertical [type=checkbox]:checked ~ label {
+    border-bottom:0;
+}
+.vertical ul li label:hover {
+    color:red;
+}
+.vertical ul li .content {
+    height:0px;
+    border-top:0;
+    transition: all .5s ease-out;
+}
+.vertical [type=checkbox]:checked ~ label ~ .content {
+    height:260px;
+	transition: all .5s ease-out;
+    
+}
+.vertical ul li .content2 {
+    height:0px;
+    border-top:0;
+    transition: all .5s ease-out;
+}
+.vertical [type=checkbox]:checked ~ label ~ .content2 {
+    height:85px;
+	transition: all .5s ease-out;
+    
+}
+.vertical ul li .content3 {
+    height:0px;
+    border-top:0;
+    transition: all .5s ease-out;
+}
+.vertical [type=checkbox]:checked ~ label ~ .content3 {
+    height:125px;
+	transition: all .5s ease-out;
+    
+}
+.vertical ul li .content4 {
+    height:0px;
+    border-top:0;
+    transition: all .5s ease-out;
+}
+.vertical [type=checkbox]:checked ~ label ~ .content4 {
+    height:150px;
+	transition: all .5s ease-out;
+    
+}
+.vertical ul li .content5 {
+    height:0px;
+    border-top:0;
+    transition: all .5s ease-out;
+}
+.vertical [type=checkbox]:checked ~ label ~ .content5 {
+    height:180px;
+	transition: all .5s ease-out;
+    
+}
+.linc{
+	text-decoration:none;
+}
+.linc span:hover{
+	color:red;
+}

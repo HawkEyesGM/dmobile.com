@@ -1,7 +1,7 @@
 	<link rel="stylesheet" href="../static/css/styleAdmin.css">
 
 <div class="admin">
-	<h1>Добавление новой позиции </h1>
+	<h1>&#9998; Добавление новой позиции| <a href="?route=admin_edit">Редактировать товар</a></h1>
 	<!-- обработать форму в процессе  addInBase.php для передачи файлов на сервер -enctype="multipart/form-data" -->
 	<form action="../process/addInBase.php" method="POST" enctype="multipart/form-data">
 		<label> Название товара: </label><br>

@@ -237,7 +237,7 @@
                             <li><a class="linc" href="/?route=catalogue&filter=price>2000 AND price<3000"><span>2000-3000 грн</span></a></li>
                             <li><a class="linc" href="/?route=catalogue&filter=price>3000 AND price<5000"><span>3000-5000 грн</span></a></li>
                             <li><a class="linc" href="/?route=catalogue&filter=price>5000 AND price<10000"><span>5000-10000 грн</span></a></li>
-                            <li><a class="linc" href="/?route=catalogue&filter=price>10000 AND price<2000"><span>более 10000 грн</span></a></li>
+                            <li><a class="linc" href="/?route=catalogue&filter=price>10000"><span>более 10000 грн</span></a></li>
                             
                 </ul>
             </div>

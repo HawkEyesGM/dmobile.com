@@ -39,6 +39,9 @@ if ($_SESSION["REFERRER"] != $_SERVER['REQUEST_URI']){
 		case 'admin';
 		include "view/admin.php";
 		break;
+		case 'admin_edit';
+		include "view/admin_edit.php";
+		break;
 		case 'registration';
 		include "view/registration.tpl";
 		break;

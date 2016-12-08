@@ -33,13 +33,24 @@ $res=mysqli_query($dbc, $query);
 <?mysqli_close($dbc);
 // если есть запрос товара то вывести его
  if($_POST['find_good']){
+ 	// получить айти товара из поста
+ 	$g_id = $_POST['find_good'];
+
+///////////  Удаление товара из БД /////////////////////////////////
+ 	?> <div class="del_product">
+ 		<form action="process/product/delete_prod.php" method="POST">
+ 			<input type="hidden" name="good" value="<?=$g_id?>">
+ 			<input type="hidden" name="delete_product" value="true">
+ 			<input type="submit" value="Удалить выбранный товар">
+ 		</form>
+ 	</div> <?
+
  	$dbc = mysqli_connect(DB_HOST,DB_USER,DB_PASSWORD,"HawkEyes");
  	if(!$dbc){	
 				//код вывода страницы ошибки (Проводятся технические работы)		
  		die();
  	}
- 	// получить айти товара из поста
- 	$g_id = $_POST['find_good'];
+ 	
  	//по айди выбранного твоара выводим весь товар в формы 
  	$query="SELECT *
  			FROM `goods`

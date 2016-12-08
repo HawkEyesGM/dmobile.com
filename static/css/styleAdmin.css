@@ -46,4 +46,15 @@ input{
 .feature_input input{
 	width:50px;
 }
+ .del_product{
+	width:205px;
+
+	height: 30px;	
+	position: absolute;
+	margin-left: 85%;
+	font-size: 18px;
+	border: 2px solid red;	
+}
+
+
 

@@ -26,8 +26,7 @@ $old_img_2 = $_POST['old_img_2'];
 $old_img_3 = $_POST['old_img_3'];
 $old_img_4 = $_POST['old_img_4'];
 $old_img_5 = $_POST['old_img_5'];
-// var_dump($_POST['old_img_m']);
-// echo $_POST['id_good'];
+
 switch ($stiker){
 	case 's1':
 		$stiker = false;		
@@ -345,7 +344,8 @@ for($i=0;$i<count($arr);$i++){
 }
 /////////////////////////////////////////////////////////////////////////////////////////////////////
 mysqli_close($dbc);
-header("Location: /?route=admin");
+
+header("Location: /?route=admin_edit");
 die();
 
 ?>

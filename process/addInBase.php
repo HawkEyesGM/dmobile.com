@@ -10,6 +10,7 @@ die();
 }
 ///////////////////Video-review//////////////////////////////////////////////////////
 $video = strip_tags(trim(htmlspecialchars($_POST["mediaLinkVideo"])));
+
 ///////////////////Demo-review///////////////////////////////////////////////////////
 $demo = strip_tags(trim(htmlspecialchars($_POST["mediaLinkDemo"])));
 ///////////////////Stiker////////////////////////////////////////////////////////////
@@ -107,6 +108,15 @@ if ($endingGood == "t22") {
 }else{$endingGood = "false";}
 /////////////////OLD PRICE////////////////////////////////////////////////////////////////
 $oldPrice=strip_tags(trim(htmlspecialchars($_POST['oldPrice'])));
+if(iconv_strlen($oldPrice) == 0)
+ {
+ 	$oldPrice="false";
+ }
+ // if(!ctype_digit($oldPrice))
+ // {
+ // 	header("Location: /?route=admin");
+ //  die();
+ // }
 /////////////////PRICE////////////////////////////////////////////////////////////////////
 $Price=trim(htmlspecialchars(strip_tags($_POST['Price'])));
 if(iconv_strlen($Price) !== 0 && ctype_digit($Price))
@@ -173,227 +183,47 @@ if (!$res) {
 };
 
 /////////////////////////////Features//////////////////////////////////////////////////////////////////
-$query = "SELECT `id`
-      	  FROM `features`";
-		$res = mysqli_query($dbc, $query);
-		$row = mysqli_fetch_assoc($res);
-$feature=$_POST[$row['id']];
-if($feature == "on")
-	{
-	$f_id = $row['id'];
-		$query = "INSERT INTO `goods_features`(`g_id`, `f_id`) 
-			      VALUES ('".$id_good."','".$f_id."')";
-	$res = mysqli_query($dbc, $query);
-}
-
-// читаем из таблицы айли фичи и получаем строку вытягиванием массива столько раз,какая по счету фича
-// этот айди будет неймом в форме через ПОСТ 
-$query = "SELECT `id`
-      	  FROM `features`";
-		$res = mysqli_query($dbc, $query);
-		for($i=0;$i<2;$i++){
-			$row = mysqli_fetch_assoc($res);
-		}		
-$feature = $_POST[$row['id']];
-if($feature == "on")
-	{
-	$f_id = $row['id']; //айди фичи
-		$query = "INSERT INTO `goods_features`(`g_id`, `f_id`) 
-			      VALUES ('".$id_good."','".$f_id."')";
-	$res = mysqli_query($dbc, $query);
-}
 
 $query = "SELECT `id`
-      	  FROM `features`";
-		$res = mysqli_query($dbc, $query);
-		for($i=0;$i<3;$i++){
-			$row = mysqli_fetch_assoc($res);
-		}		
-$feature = $_POST[$row['id']];
-if($feature == "on")
-	{
-	$f_id = $row['id'];
-		$query = "INSERT INTO `goods_features`(`g_id`, `f_id`) 
-			      VALUES ('".$id_good."','".$f_id."')";
-	$res = mysqli_query($dbc, $query);
+		  FROM `features`";
+$res = mysqli_query($dbc, $query);
+// в эьль массив вытянем все строки соответствия фичи товару из промежуточной таблицы
+$arr=[];
+while($row = mysqli_fetch_assoc($res)){
+	$arr[]=$row;	
 }
-
-$query = "SELECT `id`
-      	  FROM `features`";
-		$res = mysqli_query($dbc, $query);
-		for($i=0;$i<4;$i++){
-			$row = mysqli_fetch_assoc($res);
-		}		
-$feature = $_POST[$row['id']];
-if($feature == "on")
+// делаем цикл где перебираем каждую строку являющуюся элементом массива, количество циклов = кол-ву элементов массива
+for($i=0;$i<count($arr);$i++){
+	// (feature = on) проверяем чему равно значение фичи, что же передается через пост  [id=>4, id=>6, id=>7]
+	$feature = $_POST[$arr[$i]['id']];
+	if($feature == "on")
 	{
-	$f_id = $row['id'];
+		$f_id = $arr[$i]['id']; //айди фичи
 		$query = "INSERT INTO `goods_features`(`g_id`, `f_id`) 
-			      VALUES ('".$id_good."','".$f_id."')";
-	$res = mysqli_query($dbc, $query);
-}
-
-$query = "SELECT `id`
-      	  FROM `features`";
+				  VALUES ('".$id_good."','".$f_id."')";
 		$res = mysqli_query($dbc, $query);
-		for($i =0;$i<5;$i++){
-			$row = mysqli_fetch_assoc($res);
-		}		
-$feature = $_POST[$row['id']];
-if($feature == "on")
-	{
-	$f_id = $row['id'];
-		$query = "INSERT INTO `goods_features`(`g_id`, `f_id`) 
-			      VALUES ('".$id_good."','".$f_id."')";
-	$res = mysqli_query($dbc, $query);
-}
-
-$query = "SELECT `id`
-      	  FROM `features`";
-		$res = mysqli_query($dbc, $query);
-		for($i=0;$i<6;$i++){
-			$row = mysqli_fetch_assoc($res);
-		}		
-$feature = $_POST[$row['id']];
-if($feature =="on")
-	{
-	$f_id = $row['id'];
-		$query = "INSERT INTO `goods_features`(`g_id`, `f_id`) 
-			      VALUES ('".$id_good."','".$f_id."')";
-	$res = mysqli_query($dbc, $query);
-}
-
-$query = "SELECT `id`
-      	  FROM `features`";
-		$res = mysqli_query($dbc, $query);
-		for($i=0;$i<7;$i++){
-			$row = mysqli_fetch_assoc($res);
-		}		
-$feature = $_POST[$row['id']];
-if($feature == "on")
-	{
-	$f_id = $row['id'];
-		$query = "INSERT INTO `goods_features`(`g_id`, `f_id`) 
-			      VALUES ('".$id_good."','".$f_id."')";
-	$res = mysqli_query($dbc, $query);
-}
-
-$query = "SELECT `id`
-      	  FROM `features`";
-		$res = mysqli_query($dbc, $query);
-		for($i=0;$i<8;$i++){
-			$row = mysqli_fetch_assoc($res);
-		}		
-$feature = $_POST[$row['id']];
-if($feature == "on")
-	{
-	$f_id = $row['id'];
-		$query = "INSERT INTO `goods_features`(`g_id`, `f_id`) 
-			      VALUES ('".$id_good."','".$f_id."')";
-	$res = mysqli_query($dbc, $query);
-}
-
-$query = "SELECT `id`
-      	  FROM `features`";
-		$res = mysqli_query($dbc, $query);
-		for($i=0;$i<9;$i++){
-			$row = mysqli_fetch_assoc($res);
-		}		
-$feature = $_POST[$row['id']];
-if($feature == "on")
-	{
-	$f_id = $row['id'];
-		$query = "INSERT INTO `goods_features`(`g_id`, `f_id`) 
-			      VALUES ('".$id_good."','".$f_id."')";
-	$res = mysqli_query($dbc, $query);
-}
-
-$query = "SELECT `id`
-      	  FROM `features`";
-		$res = mysqli_query($dbc, $query);
-		for($i=0;$i<10;$i++){
-			$row = mysqli_fetch_assoc($res);
-		}		
-$feature =$_POST[$row['id']];
-if($feature == "on")
-	{
-	$f_id = $row['id'];
-		$query = "INSERT INTO `goods_features`(`g_id`, `f_id`) 
-			      VALUES ('".$id_good."','".$f_id."')";
-	$res = mysqli_query($dbc, $query);
+	}		
 }
 ///////////////////COLORS////////////////////////////////////////////////////////////////
 $query = "SELECT `id`
       	  FROM `colors`";
-		$res = mysqli_query($dbc, $query);
-		$row = mysqli_fetch_assoc($res);
-$color = $_POST[$row['id']];
-if($color == "on")
-	{
-	$c_id = $row['id'];
-		$query = "INSERT INTO `goods_colors`(`g_id`, `c_id`) 
-			      VALUES ('".$id_good."','".$c_id."')";
-	$res = mysqli_query($dbc, $query);
+$res = mysqli_query($dbc, $query);
+// в эьль массив вытянем все строки соответствия фичи товару из промежуточной таблицы
+$arr_color=[];
+while($row = mysqli_fetch_assoc($res)){
+	$arr_color[]=$row;	
 }
-
-$query = "SELECT `id`
-      	  FROM `colors`";
-		$res = mysqli_query($dbc, $query);
-		for($i=0;$i<2;$i++){
-			$row = mysqli_fetch_assoc($res);
-		}		
-$color = $_POST[$row['id']];
-if($color == "on")
+// делаем цикл где перебираем каждую строку являющуюся элементом массива, количество циклов = кол-ву элементов массива
+for($i=0;$i<count($arr_color);$i++){
+	// (feature = on) проверяем чему равно значение фичи, что же передается через пост  [id=>4, id=>6, id=>7]
+	$color = $_POST[$arr_color[$i]['id']];
+	if($color == "on")
 	{
-	$c_id = $row['id'];
+		$c_id = $arr_color[$i]['id']; //айди фичи
 		$query = "INSERT INTO `goods_colors`(`g_id`, `c_id`) 
-			      VALUES ('".$id_good."','".$c_id."')";
-	$res = mysqli_query($dbc, $query);
-}
-
-$query = "SELECT `id`
-      	  FROM `colors`";
+				  VALUES ('".$id_good."','".$c_id."')";
 		$res = mysqli_query($dbc, $query);
-		for($i=0;$i<3;$i++){
-			$row = mysqli_fetch_assoc($res);
-		}		
-$color = $_POST[$row['id']];
-if($color == "on")
-	{
-	$c_id = $row['id'];
-		$query = "INSERT INTO `goods_colors`(`g_id`, `c_id`) 
-			      VALUES ('".$id_good."','".$c_id."')";
-	$res = mysqli_query($dbc, $query);
-}
-
-$query = "SELECT `id`
-      	  FROM `colors`";
-		$res = mysqli_query($dbc, $query);
-		for($i=0;$i<4;$i++){
-			$row = mysqli_fetch_assoc($res);
-		}		
-$color = $_POST[$row['id']];
-if($color == "on")
-	{
-	$c_id = $row['id'];
-		$query = "INSERT INTO `goods_colors`(`g_id`, `c_id`) 
-			      VALUES ('".$id_good."','".$c_id."')";
-	$res = mysqli_query($dbc, $query);
-}
-
-$query = "SELECT `id`
-      	  FROM `colors`";
-		$res = mysqli_query($dbc, $query);
-		for($i=0;$i<5;$i++){
-			$row = mysqli_fetch_assoc($res);
-		}		
-$color = $_POST[$row['id']];
-if($color == "on")
-	{
-	$c_id = $row['id'];
-		$query = "INSERT INTO `goods_colors`(`g_id`, `c_id`) 
-			      VALUES ('".$id_good."','".$c_id."')";
-	$res = mysqli_query($dbc, $query);
+	}		
 }
 ///////////////////PRODUCT IMAGE//////////////////////////////////////////////////////
 $alt = strip_tags(trim(htmlspecialchars($_POST["imgAlt"])));

@@ -9,9 +9,7 @@ $_COOKIE["basket"] = isset($_COOKIE["basket"]) ? $_COOKIE["basket"] : serialize(
   }  
 
 require_once "db/goods.base";
-// if(($_POST['category'] || $_GET['brand'])){
-// require_once "db/sorting.base";
-// }
+
 
 $route=isset($_GET['route']) ? $_GET['route'] : '';
 include "view/template.tpl";

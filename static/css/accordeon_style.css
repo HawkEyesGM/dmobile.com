@@ -1,85 +1,108 @@
-
 .accordion {
-    font-family: Arial, Helvetica, sans-serif;
+        font-family: Arial, Helvetica, sans-serif;
     margin: 0 auto;
     font-size: 13px;
-    border: none;    
-    width: 180px;    
+    border: none;
+    /* border-radius: 10px; */
+    width: 200px;
+    /* padding: 10px; */
     background: #fff;
     border-color: #fff;
 }
-
 .accordion ul {
     list-style:none;
     margin:0;
     padding:0;    
 }
-
 .accordion li {
     margin:0;
     padding:0;
 }
-
-.accordion [type=radio], .accordion [type=checkbox] {
+.buttonmenu {
     display:none;
 }
-
 .accordion label {
-    display: block;
+           display: block;
+    position: relative;
+    width: 155px;
+    height: 20px;
     font-size: 13px;
     line-height: 16px;
-    color: #1a299e;    
+    left: 11px;
+    /* background: #D95B43; */
+    /* border: 1px solid #542437; */
+    color: #1a299e;
+    /* text-shadow: 1px 1px 1px rgba(255,255,255,0.3); */
     cursor: pointer;
+    /* text-transform: uppercase;*/
 }
-
-.accordion [type=radio]:checked ~ label, .accordion [type=checkbox]:checked ~ label {
- 
+.accordion label:hover{
+    background: -webkit-linear-gradient(top, #f1f908, #4bbe3f);
+    box-shadow: 3px 3px 7px 0 rgba(105, 206, 95, .5), inset 0 -3px 0 0 #3a9731;
 }
-
+ .accordion [type=radio]:checked ~ label, .accordion [type=checkbox]:checked ~ label {
+   
+    background: -webkit-linear-gradient(top, #f1f908, #4bbe3f);
+    box-shadow: 3px 3px 7px 0 rgba(105, 206, 95, .5), inset 0 -3px 0 0 #3a9731;
+   
+}
+.activeleft{
+    border-style: dashed;
+    border-width: 1;
+    border-color: rgba(7, 243, 18, 0.43);
+    display: block;
+    /* margin: 11px; */
+    display: block;
+    position: relative;
+    width: 174px;
+    left: -13px;
+}
+.activeleft:hover{
+    background:rgba(7, 243, 18, 0.17);
+}
 .accordion .content {
- padding: 0px 25px;
- overflow: hidden;
- -webkit-transition: all .5s ease-out;
- -moz-transition: all .5s ease-out;
+       padding: 0px 25px;
+    overflow: hidden;
+    -webkit-transition: all .5s ease-out;
+    -moz-transition: all .5s ease-out;
 }
-
 .accordion .content2 {
- padding: 0px 25px;
- overflow: hidden;
- -webkit-transition: all .5s ease-out;
- -moz-transition: all .5s ease-out;
+       padding: 0px 25px;
+    overflow: hidden;
+    -webkit-transition: all .5s ease-out;
+    -moz-transition: all .5s ease-out;
 }
-
 .accordion .content3 {
- padding: 0px 25px;
- overflow: hidden;
- -webkit-transition: all .5s ease-out;
- -moz-transition: all .5s ease-out;
+       padding: 0px 25px;
+    overflow: hidden;
+    -webkit-transition: all .5s ease-out;
+    -moz-transition: all .5s ease-out;
 }
-
 .accordion .content4 {
- padding: 0px 25px;
- overflow: hidden;
- -webkit-transition: all .5s ease-out;
- -moz-transition: all .5s ease-out;
+       padding: 0px 25px;
+    overflow: hidden;
+    -webkit-transition: all .5s ease-out;
+    -moz-transition: all .5s ease-out;
 }
-
 .accordion .content5 {
- padding: 0px 25px;
- overflow: hidden;
- -webkit-transition: all .5s ease-out;
- -moz-transition: all .5s ease-out;
+       padding: 0px 25px;
+    overflow: hidden;
+    -webkit-transition: all .5s ease-out;
+    -moz-transition: all .5s ease-out;
 }
-
+.accordion .content6 {
+       padding: 0px 25px;
+    overflow: hidden;
+    -webkit-transition: all .5s ease-out;
+    -moz-transition: all .5s ease-out;
+}
 .linc span {
-	color:#000;
+        color: rgba(11, 103, 19, 0.88);
 }
-
 .accordion p {
     color:#333;
     margin:0 0 10px;
 }
-
 .accordion h4 {
     color:#542437;
     padding:0;
@@ -105,8 +128,8 @@
     transition: all .5s ease-out;
 }
 .vertical [type=checkbox]:checked ~ label ~ .content {
-    height:260px;
-	transition: all .5s ease-out;
+    height:336px;
+    transition: all .5s ease-out;
     
 }
 .vertical ul li .content2 {
@@ -116,7 +139,7 @@
 }
 .vertical [type=checkbox]:checked ~ label ~ .content2 {
     height:85px;
-	transition: all .5s ease-out;
+    transition: all .5s ease-out;
     
 }
 .vertical ul li .content3 {
@@ -125,8 +148,8 @@
     transition: all .5s ease-out;
 }
 .vertical [type=checkbox]:checked ~ label ~ .content3 {
-    height:125px;
-	transition: all .5s ease-out;
+    height:167px;
+    transition: all .5s ease-out;
     
 }
 .vertical ul li .content4 {
@@ -135,8 +158,8 @@
     transition: all .5s ease-out;
 }
 .vertical [type=checkbox]:checked ~ label ~ .content4 {
-    height:150px;
-	transition: all .5s ease-out;
+    height:167px;
+    transition: all .5s ease-out;
     
 }
 .vertical ul li .content5 {
@@ -145,13 +168,17 @@
     transition: all .5s ease-out;
 }
 .vertical [type=checkbox]:checked ~ label ~ .content5 {
-    height:180px;
-	transition: all .5s ease-out;
+    height:253px;
+    transition: all .5s ease-out;
     
 }
-.linc{
-	text-decoration:none;
+.vertical ul li .content6 {
+    height:0px;
+    border-top:0;
+    transition: all .5s ease-out;
 }
-.linc span:hover{
-	color:red;
+.vertical [type=checkbox]:checked ~ label ~ .content6 {
+    height:142px;
+    transition: all .5s ease-out;
+    
 }

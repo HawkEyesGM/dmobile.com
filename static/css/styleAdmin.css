@@ -9,6 +9,8 @@
  	font-size: 20px;
 }
 
+.admin_edit{min-height: 750px;}
+
 h1{
 	color:red;
 	text-align: center;

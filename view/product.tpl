@@ -56,11 +56,11 @@ if($good){
 	</div>
 
 	<div class="preview">
-		<a href="#"><img src="images/<?=$row['img_1']?>" width="65px" ></a><br>
-		<a href="#"><img src="images/<?=$row['img_2']?>" width="65px" ></a><br>
-		<a href="#"><img src="images/<?=$row['img_3']?>" width="65px" ></a><br>
-		<a href="#"><img src="images/<?=$row['img_4']?>" width="65px" ></a><br>
-		<a href="#"><img src="images/<?=$row['img_5']?>" width="65px" ></a><br>
+		<?if($row['img_1']){?><a href="#"><img src="images/<?=$row['img_1']?>" width="65px" ></a><br><?}?>
+		<?if($row['img_2']){?><a href="#"><img src="images/<?=$row['img_2']?>" width="65px" ></a><br><?}?>
+		<?if($row['img_3']){?><a href="#"><img src="images/<?=$row['img_3']?>" width="65px" ></a><br><?}?>
+		<?if($row['img_4']){?><a href="#"><img src="images/<?=$row['img_4']?>" width="65px" ></a><br><?}?>
+		<?if($row['img_5']){?><a href="#"><img src="images/<?=$row['img_5']?>" width="65px" ></a><br><?}?>
 	</div>
 
 	<!-- стикер -->

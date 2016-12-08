@@ -6,15 +6,3 @@
   		<p id="code">4<span>0</span><span>4</span></p>
 	</div>
 </div>
-
-
-
-
-
-
-
-
-
-
-
-

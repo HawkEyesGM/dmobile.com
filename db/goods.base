@@ -74,7 +74,6 @@ switch ($_POST['category']){
 		FROM `goods`
 		WHERE $parameter 
 		ORDER BY $sort;";
-
 $res=mysqli_query($dbc, $query);
 if(!$res){
 	print_r($query);
@@ -86,31 +85,4 @@ while ($row = mysqli_fetch_assoc($res)){
 	$goods[$index] = $row;
 }
 mysqli_close($dbc);
-
 ?>
-
-
-
-
-
-
-<!-- // if(($_POST['category'])=='raiting'){	
-// 	$query="SELECT `id`, `demo`, `name`, `video`, `price`, `old_price`, `description`, `public`, `sticker`, `in_stock`, `raiting`, `group_goods`, `brand`
-// 			FROM `goods`
-//  			ORDER BY `raiting` DESC;";
-// 	}
-// 	if(($_POST['category'])=='cheap'){	
-// 	$query="SELECT `id`, `demo`,`name`, `video`, `price`, `old_price`, `description`, `public`, `sticker`, `in_stock`, `raiting`, `group_goods`, `brand`
-//  			FROM `goods`
-//  			ORDER BY `price`;";
-// 	}
-// 	if(($_POST['category'])=='expensive'){	
-// 	$query="SELECT `id`, `demo`,`name`, `video`, `price`, `old_price`, `description`, `public`, `sticker`, `in_stock`, `raiting`, `group_goods`, `brand`
-//  			FROM `goods`
-// 			ORDER BY `price` DESC;";
-// 	}
-// 	if(($_POST['category'])=='new'){	
-// 	$query="SELECT `id`, `demo`,`name`, `video`, `price`, `old_price`, `description`, `public`, `sticker`, `in_stock`, `raiting`, `group_goods`, `brand`
-// 			FROM `goods`
-// 			ORDER BY `id` DESC;";
-// 	} -->

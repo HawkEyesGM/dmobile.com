@@ -198,7 +198,7 @@ if(!$dbc){
 		$row = mysqli_fetch_assoc($res);
 		$i_id=$row["i_id"];  //айди изображения найденное по айди товара
 
-		$query="SELECT `main_img`, `alt_img`, `title_img`, `img_1`, `img_2`, `img_3`, `img_4`, `img_5`
+		$query="SELECT *
 				FROM `images`
 				WHERE id=$i_id;";	// ищем все изображения по айди изображения
 		$res=mysqli_query($dbc, $query);
@@ -207,8 +207,8 @@ if(!$dbc){
 
 		<div class="imgGood">			
 			<?if ($row) {?>
-				<a href="?route=product&id=<?=$key?>"> <center><img src="images/<?=$row["main_img"];?>" alt="<?=$row["alt_img"]?>" title="<?=$row["title_img"]?>"
-					width="187px" height="280px"></center> </a>
+				<a href="?route=product&id=<?=$key?>"> <center><img src="images/<?=$row["main_img_medium"];?>" alt="<?=$row["alt_img"]?>" title="<?=$row["title_img"]?>"
+					></center> </a>
 			<?}?>
 		</div>
 

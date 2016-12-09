@@ -152,7 +152,7 @@ $res=mysqli_query($dbc, $query);
 		// айди изображения соотв. товару 
 	 	$i_id = $row['i_id'];
 	 	// запрос в саму таблицу изображений с айди изображения
-	 	$query="SELECT `id`, `main_img`, `alt_img`, `title_img`, `img_1`, `img_2`, `img_3`, `img_4`, `img_5`
+	 	$query="SELECT *
 	 	  		FROM `images`
 	 	  		WHERE id= $i_id;";
 	 	$res=mysqli_query($dbc, $query);
@@ -163,42 +163,62 @@ $res=mysqli_query($dbc, $query);
 	 	$row = mysqli_fetch_assoc($res);
 	 	?>
 		<!-- выводим главное фото товара -->
-		<img src="images/<?=$row['main_img']?>" width="100px" >
-		<? $path_img_m = $row['main_img']; ?>
+		<img src="images/<?=$row['main_img_medium']?>"  >
+		<? $path_img_m = $row['main_img'];
+		$path_img_m_med = $row['main_img_medium'];
+		$path_img_m_small = $row['main_img_small'];
+		 ?>
 		<input type="hidden" name="old_img_m" value="<?=$path_img_m?>">
+		<input type="hidden" name="old_img_medium" value="<?=$path_img_m_med?>">
+		<input type="hidden" name="old_img_small" value="<?=$path_img_m_small?>">
 	   	<label>Главное изображение товара:</label><br><br>   
 		<input type="file" name="g_img_main" >
 		<br><hr>
 		<!-- Дополнительные изображения -->
-		<?if($row['img_1']){?><img src="images/<?=$row['img_1']?>" width="100px" ><?}?>
+		<?if($row['img_1']){?><img src="images/<?=$row['img_1_small']?>"  ><?}?>
 		<label>Дополнительное изображение #1</label>
-		<? $path_img_1 = $row['img_1']; ?>
+		<? $path_img_1 = $row['img_1'];
+		   $path_img_1_small = $row['img_1_small'];
+		?>
 		<!-- для передачи в форму редактирования названия старой картинки и последуюзего ее удаления -->
 		<input type="hidden" name="old_img_1" value="<?=$path_img_1?>">
+		<input type="hidden" name="old_img_1_small" value="<?=$path_img_1_small?>">
 		<input type="file" name="g_img_1"><br>
 
-		<?if($row['img_2']){?><img src="images/<?=$row['img_2']?>" width="100px" ><?}?>
+		<?if($row['img_2']){?><img src="images/<?=$row['img_2_small']?>" ><?}?>
 		<label>Дополнительное изображение #2</label>
-		<? $path_img_1 = $row['img_2']; ?>
+		<? $path_img_2 = $row['img_2'];
+		   $path_img_2_small = $row['img_2_small'];
+		?>
 		<input type="hidden" name="old_img_2" value="<?=$path_img_2?>">
+		<input type="hidden" name="old_img_2_small" value="<?=$path_img_2_small?>">
 		<input type="file" name="g_img_2"><br>
 
-		<?if($row['img_3']){?><img src="images/<?=$row['img_3']?>" width="100px" ><?}?>
+		<?if($row['img_3']){?><img src="images/<?=$row['img_3_small']?>"  ><?}?>
 		<label>Дополнительное изображение #3</label>
-		<? $path_img_3 = $row['img_3']; ?>
+		<? $path_img_3 = $row['img_3'];
+		   $path_img_3_small = $row['img_3_small'];
+		?>
 		<input type="hidden" name="old_img_3" value="<?=$path_img_3?>">
+		<input type="hidden" name="old_img_3_small" value="<?=$path_img_3_small?>">
 		<input type="file" name="g_img_3"><br>
 
-		<?if($row['img_4']){?><img src="images/<?=$row['img_4']?>" width="100px" ><?}?>
+		<?if($row['img_4']){?><img src="images/<?=$row['img_4_small']?>" ><?}?>
 		<label>Дополнительное изображение #4</label>
-		<? $path_img_4 = $row['img_4']; ?>
+		<? $path_img_4 = $row['img_4'];
+		   $path_img_4_small = $row['img_4_small'];
+		?>
 		<input type="hidden" name="old_img_4" value="<?=$path_img_4?>">
+		<input type="hidden" name="old_img_4_small" value="<?=$path_img_4_small?>">
 		<input type="file" name="g_img_4"><br>
 
-		<?if($row['img_5']){?><img src="images/<?=$row['img_5']?>" width="100px" ><?}?>
+		<?if($row['img_5']){?><img src="images/<?=$row['img_5_small']?>"  ><?}?>
 		<label>Дополнительное изображение #5</label>
-		<? $path_img_5 = $row['img_5']; ?>
+		<? $path_img_5 = $row['img_5'];
+		   $path_img_5_small = $row['img_5_small'];
+		?>
 		<input type="hidden" name="old_img_5" value="<?=$path_img_5?>">
+		<input type="hidden" name="old_img_5_small" value="<?=$path_img_5_small?>">
 		<input type="file" name="g_img_5"><br><hr><br>  	
    	
 		<label>Альтернативный текст изображения:</label><br>

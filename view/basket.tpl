@@ -33,7 +33,7 @@ if(!$dbc){
 					$row = mysqli_fetch_assoc($res);
 					$i_id=$row["i_id"];  
 
-					$query="SELECT `main_img`, `alt_img`, `title_img`, `img_1`, `img_2`, `img_3`, `img_4`, `img_5`
+					$query="SELECT *
 					FROM `images`
 					WHERE id=$i_id;";	
 					$res=mysqli_query($dbc, $query);
@@ -42,8 +42,8 @@ if(!$dbc){
 
 					<div id="img">			
 					<?if ($row) {?>
-					<a href="#"> <center><img src="images/<?=$row["main_img"];?>" alt="<?=$row["alt_img"]?>" title="<?=$row["title_img"]?>"
-					width="60px" ></center> </a>
+					<a href="#"> <center><img src="images/<?=$row["main_img_small"];?>" alt="<?=$row["alt_img"]?>" title="<?=$row["title_img"]?>"
+					 ></center> </a>
 					<?}?>
 					</div>
 					<!-- название товара -->

@@ -1,5 +1,6 @@
 <?
 include '../db/config/config.php';
+include '../lib/functions/resize_crop_func.php';
 $remote_ip = $_SERVER['REMOTE_ADDR'];
 $remote_host = $_SERVER['REMOTE_HOST'];
 $time= date('c');
@@ -237,7 +238,18 @@ if((int)$_FILES['g_img_main']['error'] === 0){
 		{$img=md5(microtime().uniqid().rand(0,9999));
 			move_uploaded_file($_FILES['g_img_main']["tmp_name"], "../images/".$img.".".$fileform);
 	}
-	$img_name = $img.".".$fileform;	
+	$img_name = $img.".".$fileform;
+	$img_name_medium = $img."_med".".".$fileform;
+	$img_name_small = $img."_small".".".$fileform;
+
+	resize("../images/".$img_name, "../images/".$img_name_medium, 173, 280);
+	resize("../images/".$img_name, "../images/".$img_name_small, 0, 100);
+
+	$size_img=getimagesize('../images/'.$img_name_small);
+	if($size_img[0] > $size_img[1]){
+		 
+		resize("../images/".$img_name_small,  "../images/".$img_name_small,  65,  0);
+	}
 }
 if((int)$_FILES['g_img_1']['error'] === 0){		
 	$filetype=$_FILES['g_img_1']['type'];
@@ -248,6 +260,15 @@ if((int)$_FILES['g_img_1']['error'] === 0){
 			move_uploaded_file($_FILES['g_img_1']["tmp_name"], "../images/".$img1.".".$fileform);
 	}
 	$img_name1 = $img1.".".$fileform;
+	$img_name1_small = $img1."_small".".".$fileform;
+
+	resize("../images/".$img_name1, "../images/".$img_name1_small, 0, 100);
+	$size_img=getimagesize('../images/'.$img_name1_small);
+	if($size_img[0] > $size_img[1]){
+		 
+		resize("../images/".$img_name1_small,  "../images/".$img_name1_small,  75,  0);
+	}
+
 }
 if((int)$_FILES['g_img_2']['error'] === 0){		
 	$filetype=$_FILES['g_img_2']['type'];
@@ -257,7 +278,15 @@ if((int)$_FILES['g_img_2']['error'] === 0){
 		{$img2=md5(microtime().uniqid().rand(0,9999));
 			move_uploaded_file($_FILES['g_img_2']["tmp_name"], "../images/".$img2.".".$fileform);
 	}
-	$img_name2 = $img2.".".$fileform;
+	$img_name2 = $img2.".".$fileform;	
+	$img_name2_small = $img2."_small".".".$fileform;
+
+	resize("../images/".$img_name2, "../images/".$img_name2_small, 0, 100);
+	$size_img=getimagesize('../images/'.$img_name2_small);
+	if($size_img[0] > $size_img[1]){
+		 
+		resize("../images/".$img_name2_small,  "../images/".$img_name2_small,  75,  0);
+	}
 }
 if((int)$_FILES['g_img_3']['error'] === 0){		
 	$filetype=$_FILES['g_img_3']['type'];
@@ -268,6 +297,14 @@ if((int)$_FILES['g_img_3']['error'] === 0){
 			move_uploaded_file($_FILES['g_img_3']["tmp_name"], "../images/".$img3.".".$fileform);
 	}
 	$img_name3 = $img3.".".$fileform;
+	$img_name3_small = $img3."_small".".".$fileform;
+
+	resize("../images/".$img_name3, "../images/".$img_name3_small, 0, 100);
+	$size_img=getimagesize('../images/'.$img_name3_small);
+	if($size_img[0] > $size_img[1]){
+		 
+		resize("../images/".$img_name3_small,  "../images/".$img_name3_small,  75,  0);
+	}
 }
 if((int)$_FILES['g_img_4']['error'] === 0){		
 	$filetype=$_FILES['g_img_4']['type'];
@@ -278,6 +315,14 @@ if((int)$_FILES['g_img_4']['error'] === 0){
 			move_uploaded_file($_FILES['g_img_4']["tmp_name"], "../images/".$img4.".".$fileform);
 	}
 	$img_name4 = $img4.".".$fileform;
+	$img_name4_small = $img4."_small".".".$fileform;
+
+	resize("../images/".$img_name4, "../images/".$img_name4_small, 0, 100);
+	$size_img=getimagesize('../images/'.$img_name4_small);
+	if($size_img[0] > $size_img[1]){
+		 
+		resize("../images/".$img_name4_small,  "../images/".$img_name4_small,  75,  0);
+	}
 }
 if((int)$_FILES['g_img_5']['error'] === 0){		
 	$filetype=$_FILES['g_img_5']['type'];
@@ -288,9 +333,17 @@ if((int)$_FILES['g_img_5']['error'] === 0){
 			move_uploaded_file($_FILES['g_img_5']["tmp_name"], "../images/".$img5.".".$fileform);
 	}
 	$img_name5 = $img5.".".$fileform;
+	$img_name5_small = $img5."_small".".".$fileform;
+
+	resize("../images/".$img_name5, "../images/".$img_name5_small, 0, 100);
+	$size_img=getimagesize('../images/'.$img_name5_small);
+	if($size_img[0] > $size_img[1]){
+		 
+		resize("../images/".$img_name5_small,  "../images/".$img_name5_small,  75,  0);
+	}
 }
-$query = "INSERT INTO `images`(`main_img`, `alt_img`, `title_img`, `img_1`, `img_2`, `img_3`, `img_4`, `img_5`) 
-		  VALUES ('".$img_name."','".$alt."','".$title."','".$img_name1."','".$img_name2."','".$img_name3."','".$img_name4."','".$img_name5."')";
+$query = "INSERT INTO `images`(`main_img`, `main_img_medium`, `main_img_small`, `alt_img`, `title_img`, `img_1`, `img_1_small`, `img_2`, `img_2_small`, `img_3`, `img_3_small`, `img_4`, `img_4_small`, `img_5`, `img_5_small`) 
+		  VALUES ('".$img_name."','".$img_name_medium."','".$img_name_small."','".$alt."','".$title."','".$img_name1."','".$img_name1_small."','".$img_name2."','".$img_name2_small."','".$img_name3."','".$img_name3_small."','".$img_name4."','".$img_name4_small."','".$img_name5."','".$img_name5_small."')";
 $res = mysqli_query($dbc, $query);
 $i_id = mysqli_insert_id($dbc);
 

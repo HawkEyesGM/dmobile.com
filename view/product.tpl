@@ -41,7 +41,7 @@ if($good){
 	$row = mysqli_fetch_assoc($res);
 	$i_id=$row["i_id"];  
 
-	$query="SELECT `main_img`, `alt_img`, `title_img`, `img_1`, `img_2`, `img_3`, `img_4`, `img_5`
+	$query="SELECT *
 			FROM `images`
 			WHERE id=$i_id;";	
 	$res=mysqli_query($dbc, $query);
@@ -50,17 +50,17 @@ if($good){
 
 	<div class="imgGood">			
 		<?if ($row) {?>
-			<a href="#"> <center><img src="images/<?=$row["main_img"];?>" alt="<?=$row["alt_img"]?>" title="<?=$row["title_img"]?>"
-				width="200px" ></center> </a>
+			<a href="#"> <center><img src="images/<?=$row["main_img_medium"];?>" alt="<?=$row["alt_img"]?>" title="<?=$row["title_img"]?>"
+				 ></center> </a>
 		<?}?>
 	</div>
 
 	<div class="preview">
-		<?if($row['img_1']){?><a href="#"><img src="images/<?=$row['img_1']?>" width="65px" ></a><br><?}?>
-		<?if($row['img_2']){?><a href="#"><img src="images/<?=$row['img_2']?>" width="65px" ></a><br><?}?>
-		<?if($row['img_3']){?><a href="#"><img src="images/<?=$row['img_3']?>" width="65px" ></a><br><?}?>
-		<?if($row['img_4']){?><a href="#"><img src="images/<?=$row['img_4']?>" width="65px" ></a><br><?}?>
-		<?if($row['img_5']){?><a href="#"><img src="images/<?=$row['img_5']?>" width="65px" ></a><br><?}?>
+		<?if($row['img_1']){?><a href="images/<?=$row["img_1"];?>" target="blank" ><img src="images/<?=$row['img_1_small']?>"  ></a><br><?}?>
+		<?if($row['img_2']){?><a href="images/<?=$row["img_2"];?>" target="blank" ><img src="images/<?=$row['img_2_small']?>"  ></a><br><?}?>
+		<?if($row['img_3']){?><a href="images/<?=$row["img_3"];?>" target="blank" ><img src="images/<?=$row['img_3_small']?>"  ></a><br><?}?>
+		<?if($row['img_4']){?><a href="images/<?=$row["img_4"];?>" target="blank" ><img src="images/<?=$row['img_4_small']?>"  ></a><br><?}?>
+		<?if($row['img_5']){?><a href="images/<?=$row["img_5"];?>" target="blank" ><img src="images/<?=$row['img_5_small']?>" ></a><br><?}?>
 	</div>
 
 	<!-- стикер -->

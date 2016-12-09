@@ -2,6 +2,7 @@
 session_start();
 include '../../lib/functions/validation_func.php';
 include '../../db/config/config.php';
+include '../../lib/functions/resize_crop_func.php';
 
 $time= date('c');
 $remote_ip = $_SERVER['REMOTE_ADDR'];
@@ -21,11 +22,18 @@ $brand = $_POST['brand'];
 $alt = strip_tags(trim(htmlspecialchars($_POST["imgAlt"])));
 $title = strip_tags(trim(htmlspecialchars($_POST["imgValue"])));
 $old_img_m = $_POST['old_img_m'];
+$old_img_m_medium = $_POST['old_img_medium'];
+$old_img_m_small = $_POST['old_img_small'];
 $old_img_1 = $_POST['old_img_1'];
+$old_img_1_small = $_POST['old_img_1_small'];
 $old_img_2 = $_POST['old_img_2'];
+$old_img_2_small = $_POST['old_img_2_small'];
 $old_img_3 = $_POST['old_img_3'];
+$old_img_3_small = $_POST['old_img_3_small'];
 $old_img_4 = $_POST['old_img_4'];
+$old_img_4_small = $_POST['old_img_4_small'];
 $old_img_5 = $_POST['old_img_5'];
+$old_img_5_small = $_POST['old_img_5_small'];
 
 switch ($stiker){
 	case 's1':
@@ -168,8 +176,23 @@ if((int)$_FILES['g_img_main']['error'] === 0){
 		{$img=md5(microtime().uniqid().rand(0,9999));
 			move_uploaded_file($_FILES['g_img_main']["tmp_name"], "../../images/".$img.".".$fileform);
 	}
-	unlink("../../images/$old_img_m");
-	$img_name = $img.".".$fileform;	
+	if($old_img_m != ''){unlink("../../images/$old_img_m");
+						 unlink("../../images/$old_img_m_medium");
+						 unlink("../../images/$old_img_m_small");};
+	
+	$img_name = $img.".".$fileform;
+	$img_name_medium = $img."_med".".".$fileform;
+	$img_name_small = $img."_small".".".$fileform;
+
+	resize("../../images/".$img_name, "../../images/".$img_name_medium, 173, 280);
+	resize("../../images/".$img_name, "../../images/".$img_name_small, 0, 100);
+
+	$size_img=getimagesize("../../images/".$img_name_small);
+	if($size_img[0] > $size_img[1]){
+		 
+		resize("../../images/".$img_name_small,  "../../images/".$img_name_small,  65,  0);
+	}
+
 	$query = "SELECT `i_id`
 		  	  FROM `goods_images` 
 		  	  WHERE `g_id`=$g_id";
@@ -177,21 +200,32 @@ if((int)$_FILES['g_img_main']['error'] === 0){
 	$row = mysqli_fetch_assoc($res);
 	$i_id = $row['i_id'];
 	$query ="UPDATE `images` 
-		     SET `main_img`='".$img_name."',`alt_img`='".$alt."',`title_img`='".$title."'
+		     SET `main_img`='".$img_name."', `main_img_medium`='".$img_name_medium."', `main_img_small`='".$img_name_small."', `alt_img`='".$alt."',`title_img`='".$title."'
 		     WHERE `id`=".$i_id.";";
 	$res = mysqli_query($dbc, $query);
 };
+
 // дополнительные изображения
 if((int)$_FILES['g_img_1']['error'] === 0){		
 	$filetype=$_FILES['g_img_1']['type'];
 	$fileform=explode(".",$_FILES['g_img_1']['name']);
 	$fileform=$fileform[count($fileform)-1];
 	if(($filetype=="image/gif"&&$fileform=="gif")||($filetype=="image/jpeg"&&$fileform=="jpg")||($filetype=="image/jpeg"&&$fileform=="jpeg")||($filetype=="image/bmp"&&$fileform=="bmp")||($filetype=="image/png"&&$fileform=="png"))
-		{$img=md5(microtime().uniqid().rand(0,9999));
-			move_uploaded_file($_FILES['g_img_1']["tmp_name"], "../../images/".$img.".".$fileform);
+		{$img1=md5(microtime().uniqid().rand(0,9999));
+			move_uploaded_file($_FILES['g_img_1']["tmp_name"], "../../images/".$img1.".".$fileform);
 	}
-	if($old_img_1 != ''){unlink("../../images/$old_img_1");};
-	$img_name = $img.".".$fileform;	
+	if($old_img_1 != ''){unlink("../../images/$old_img_1");
+						 unlink("../../images/$old_img_1_small");};
+	$img_name1 = $img1.".".$fileform;
+	$img_name1_small = $img1."_small".".".$fileform;
+
+	resize("../../images/".$img_name1, "../../images/".$img_name1_small, 0, 100);
+	$size_img=getimagesize("../../images/".$img_name1_small);
+	if($size_img[0] > $size_img[1]){
+		 
+		resize("../../images/".$img_name1_small,  "../../images/".$img_name1_small,  75,  0);
+	}
+
 	$query = "SELECT `i_id`
 		  	  FROM `goods_images` 
 		  	  WHERE `g_id`=$g_id";
@@ -199,7 +233,7 @@ if((int)$_FILES['g_img_1']['error'] === 0){
 	$row = mysqli_fetch_assoc($res);
 	$i_id = $row['i_id'];
 	$query ="UPDATE `images` 
-		     SET `img_1`='".$img_name."',`alt_img`='".$alt."',`title_img`='".$title."'
+		     SET `img_1`='".$img_name1."', `img_1_small`='".$img_name1_small."'
 		     WHERE `id`=".$i_id.";";
 	$res = mysqli_query($dbc, $query);
 };
@@ -209,11 +243,21 @@ if((int)$_FILES['g_img_2']['error'] === 0){
 	$fileform=explode(".",$_FILES['g_img_2']['name']);
 	$fileform=$fileform[count($fileform)-1];
 	if(($filetype=="image/gif"&&$fileform=="gif")||($filetype=="image/jpeg"&&$fileform=="jpg")||($filetype=="image/jpeg"&&$fileform=="jpeg")||($filetype=="image/bmp"&&$fileform=="bmp")||($filetype=="image/png"&&$fileform=="png"))
-		{$img=md5(microtime().uniqid().rand(0,9999));
-			move_uploaded_file($_FILES['g_img_2']["tmp_name"], "../../images/".$img.".".$fileform);
+		{$img2 = md5(microtime().uniqid().rand(0,9999));
+			move_uploaded_file($_FILES['g_img_2']["tmp_name"], "../../images/".$img2.".".$fileform);
 	}
-	if($old_img_2!=''){unlink("../../images/$old_img_2");};
-	$img_name = $img.".".$fileform;	
+	if($old_img_2!=''){unlink("../../images/$old_img_2");
+					   unlink("../../images/$old_img_2_small");};
+	$img_name2 = $img2.".".$fileform;
+	$img_name2_small = $img2."_small".".".$fileform;
+
+	resize("../../images/".$img_name2, "../../images/".$img_name2_small, 0, 100);
+	$size_img=getimagesize("../../images/".$img_name2_small);
+	if($size_img[0] > $size_img[1]){
+		 
+		resize("../../images/".$img_name2_small,  "../../images/".$img_name2_small,  75,  0);
+	}
+
 	$query = "SELECT `i_id`
 		  	  FROM `goods_images` 
 		  	  WHERE `g_id`=$g_id";
@@ -221,7 +265,7 @@ if((int)$_FILES['g_img_2']['error'] === 0){
 	$row = mysqli_fetch_assoc($res);
 	$i_id = $row['i_id'];
 	$query ="UPDATE `images` 
-		     SET `img_2`='".$img_name."',`alt_img`='".$alt."',`title_img`='".$title."'
+		     SET `img_2`='".$img_name2."', `img_2_small`='".$img_name2_small."'
 		     WHERE `id`=".$i_id.";";
 	$res = mysqli_query($dbc, $query);
 };
@@ -231,11 +275,21 @@ if((int)$_FILES['g_img_3']['error'] === 0){
 	$fileform=explode(".",$_FILES['g_img_3']['name']);
 	$fileform=$fileform[count($fileform)-1];
 	if(($filetype=="image/gif"&&$fileform=="gif")||($filetype=="image/jpeg"&&$fileform=="jpg")||($filetype=="image/jpeg"&&$fileform=="jpeg")||($filetype=="image/bmp"&&$fileform=="bmp")||($filetype=="image/png"&&$fileform=="png"))
-		{$img=md5(microtime().uniqid().rand(0,9999));
-			move_uploaded_file($_FILES['g_img_3']["tmp_name"], "../../images/".$img.".".$fileform);
+		{$img3 = md5(microtime().uniqid().rand(0,9999));
+			move_uploaded_file($_FILES['g_img_3']["tmp_name"], "../../images/".$img3.".".$fileform);
 	}
-	if($old_img_3!=''){unlink("../../images/$old_img_3");};
-	$img_name = $img.".".$fileform;	
+	if($old_img_3!=''){unlink("../../images/$old_img_3");
+					   unlink("../../images/$old_img_3_small");};
+	$img_name3 = $img3.".".$fileform;
+	$img_name3_small = $img3."_small".".".$fileform;
+
+	resize("../../images/".$img_name3, "../../images/".$img_name3_small, 0, 100);
+	$size_img=getimagesize("../../images/".$img_name3_small);
+	if($size_img[0] > $size_img[1]){
+		 
+		resize("../../images/".$img_name3_small,  "../../images/".$img_name3_small,  75,  0);
+	}
+
 	$query = "SELECT `i_id`
 		  	  FROM `goods_images` 
 		  	  WHERE `g_id`=$g_id";
@@ -243,7 +297,7 @@ if((int)$_FILES['g_img_3']['error'] === 0){
 	$row = mysqli_fetch_assoc($res);
 	$i_id = $row['i_id'];
 	$query ="UPDATE `images` 
-		     SET `img_3`='".$img_name."',`alt_img`='".$alt."',`title_img`='".$title."'
+		     SET `img_3`='".$img_name3."', `img_3_small`='".$img_name3_small."'
 		     WHERE `id`=".$i_id.";";
 	$res = mysqli_query($dbc, $query);
 };
@@ -253,11 +307,21 @@ if((int)$_FILES['g_img_4']['error'] === 0){
 	$fileform=explode(".",$_FILES['g_img_4']['name']);
 	$fileform=$fileform[count($fileform)-1];
 	if(($filetype=="image/gif"&&$fileform=="gif")||($filetype=="image/jpeg"&&$fileform=="jpg")||($filetype=="image/jpeg"&&$fileform=="jpeg")||($filetype=="image/bmp"&&$fileform=="bmp")||($filetype=="image/png"&&$fileform=="png"))
-		{$img=md5(microtime().uniqid().rand(0,9999));
-			move_uploaded_file($_FILES['g_img_4']["tmp_name"], "../../images/".$img.".".$fileform);
+		{$img4 = md5(microtime().uniqid().rand(0,9999));
+			move_uploaded_file($_FILES['g_img_4']["tmp_name"], "../../images/".$img4.".".$fileform);
 	}
-	if($old_img_4!=''){unlink("../../images/$old_img_4");};
-	$img_name = $img.".".$fileform;	
+	if($old_img_4!=''){unlink("../../images/$old_img_4");
+					   unlink("../../images/$old_img_4_small");};
+	$img_name4 = $img4.".".$fileform;
+	$img_name4_small = $img4."_small".".".$fileform;
+
+	resize("../../images/".$img_name4, "../../images/".$img_name4_small, 0, 100);
+	$size_img=getimagesize("../../images/".$img_name4_small);
+	if($size_img[0] > $size_img[1]){
+		 
+		resize("../../images/".$img_name4_small,  "../../images/".$img_name4_small,  75,  0);
+	}
+
 	$query = "SELECT `i_id`
 		  	  FROM `goods_images` 
 		  	  WHERE `g_id`=$g_id";
@@ -265,7 +329,7 @@ if((int)$_FILES['g_img_4']['error'] === 0){
 	$row = mysqli_fetch_assoc($res);
 	$i_id = $row['i_id'];
 	$query ="UPDATE `images` 
-		     SET `img_4`='".$img_name."',`alt_img`='".$alt."',`title_img`='".$title."'
+		     SET `img_4`='".$img_name4."', `img_4_small`='".$img_name4_small."'
 		     WHERE `id`=".$i_id.";";
 	$res = mysqli_query($dbc, $query);
 };
@@ -275,11 +339,21 @@ if((int)$_FILES['g_img_5']['error'] === 0){
 	$fileform=explode(".",$_FILES['g_img_5']['name']);
 	$fileform=$fileform[count($fileform)-1];
 	if(($filetype=="image/gif"&&$fileform=="gif")||($filetype=="image/jpeg"&&$fileform=="jpg")||($filetype=="image/jpeg"&&$fileform=="jpeg")||($filetype=="image/bmp"&&$fileform=="bmp")||($filetype=="image/png"&&$fileform=="png"))
-		{$img=md5(microtime().uniqid().rand(0,9999));
-			move_uploaded_file($_FILES['g_img_5']["tmp_name"], "../../images/".$img.".".$fileform);
+		{$img5 = md5(microtime().uniqid().rand(0,9999));
+			move_uploaded_file($_FILES['g_img_5']["tmp_name"], "../../images/".$img5.".".$fileform);
 	}
-	if($old_img_5!=''){unlink("../../images/$old_img_5");};
-	$img_name = $img.".".$fileform;	
+	if($old_img_5!=''){unlink("../../images/$old_img_5");
+					   unlink("../../images/$old_img_5_small");};
+	$img_name5 = $img5.".".$fileform;
+	$img_name5_small = $img5."_small".".".$fileform;
+
+	resize("../../images/".$img_name5, "../../images/".$img_name5_small, 0, 100);
+	$size_img=getimagesize("../../images/".$img_name5_small);
+	if($size_img[0] > $size_img[1]){
+		 
+		resize("../../images/".$img_name5_small,  "../../images/".$img_name5_small,  75,  0);
+	}
+
 	$query = "SELECT `i_id`
 		  	  FROM `goods_images` 
 		  	  WHERE `g_id`=$g_id";
@@ -287,7 +361,7 @@ if((int)$_FILES['g_img_5']['error'] === 0){
 	$row = mysqli_fetch_assoc($res);
 	$i_id = $row['i_id'];
 	$query ="UPDATE `images` 
-		     SET `img_5`='".$img_name."',`alt_img`='".$alt."',`title_img`='".$title."'
+		     SET `img_5`='".$img_name5."', `img_5_small`='".$img_name5_small."'
 		     WHERE `id`=".$i_id.";";
 	$res = mysqli_query($dbc, $query);
 };
